@@ -244,6 +244,8 @@ fn hover_type_fallback(
 
     let expr_or_pat = match_ast! {
         match node {
+            ast::Type(_it) => return None,
+            ast::Item(_it) => return None,
             ast::Expr(it) => Either::Left(it),
             ast::Pat(it) => Either::Right(it),
             // If this node is a MACRO_CALL, it means that `descend_into_macros_many` failed to resolve.
