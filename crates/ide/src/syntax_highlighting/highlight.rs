@@ -170,6 +170,7 @@ fn keyword(
         | T![while]
         | T![yield] => h | HlMod::ControlFlow,
         T![for] if parent_matches::<ast::ForExpr>(&token) => h | HlMod::ControlFlow,
+        T![mut] => h | HlMod::Mutable,
         T![unsafe] => h | HlMod::Unsafe,
         T![true] | T![false] => HlTag::BoolLiteral.into(),
         // crate is handled just as a token if it's in an `extern crate`
